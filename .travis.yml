@@ -1,0 +1,29 @@
+language: rust
+
+rust:
+  - stable
+  - beta
+  - nightly
+  
+os:
+  - linux
+  - osx
+
+matrix:
+  allow_failures:
+    - rust: nightly
+
+script:
+  - cargo build
+  - cargo test
+  - if [ $TRAVIS_RUST_VERSION == stable ] && [ $TRAVIS_OS_NAME == linux ]; then cargo doc; fi
+
+after_success: |
+  [ $TRAVIS_BRANCH = master ] &&
+  [ $TRAVIS_RUST_VERSION = stable ] &&
+  [ $TRAVIS_OS_NAME = linux ] &&
+  echo '<meta http-equiv=refresh content=0;url=rusty-trie/index.html>' > target/doc/index.html &&
+  pip install ghp-import --user $USER &&
+  $HOME/.local/bin/ghp-import -n target/doc &&
+  git push -qf https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages &&
+  bash <(curl -s https://codecov.io/bash)
