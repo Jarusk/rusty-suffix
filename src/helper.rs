@@ -30,8 +30,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_rand_dna_10() {
-        let seq = rand_dna(10);
-        assert_eq!(10, seq.len());
+    fn test_rand_dna() {
+        let seq_len = 1000000;
+        let seq = rand_dna(seq_len);
+        assert_eq!(seq_len, seq.len());
     }
 }
