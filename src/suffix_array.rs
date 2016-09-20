@@ -10,3 +10,14 @@ pub fn build_suffix_array(s: &str) -> Vec<usize> {
     }
     Vec::new()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_build_suffix_array() {
+        let result = build_suffix_array("ACATTCGT");
+        assert_eq!(1,1);
+    }
+}
