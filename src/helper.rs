@@ -1,7 +1,5 @@
-extern crate rand;
 extern crate time;
 
-use self::rand::{Rng, SeedableRng, XorShiftRng};
 use kissrng::KissRng;
 
 pub fn rand_dna(n: usize) -> String {
