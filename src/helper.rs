@@ -2,16 +2,15 @@ extern crate rand;
 extern crate time;
 
 use self::rand::{Rng, SeedableRng, XorShiftRng};
+use kissrng::KissRng;
 
 pub fn rand_dna(n: usize) -> String {
-    let seed_val = time::precise_time_ns() as u32;
-    let seed = [seed_val, seed_val + 2239901u32, seed_val + 12212212u32, seed_val + 3265347u32];
     let mut sequence = String::new();
-    let mut rng = XorShiftRng::from_seed(seed);
+    let mut rng = KissRng::new();
 
     for _ in 0..n {
         sequence.push(
-            match rng.next_u32() % 4 {
+            match rng.next() % 4 {
                 0 => 'A',
                 1 => 'C',
                 2 => 'G',
