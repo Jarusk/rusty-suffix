@@ -27,7 +27,7 @@ mod tests {
 
     #[test]
     fn test_rand_dna() {
-        let seq_len = 1000;
+        let seq_len = 1000000;
         let seq = rand_dna(seq_len);
         println!("{:?}",&seq);
         assert_eq!(seq_len, seq.len());
