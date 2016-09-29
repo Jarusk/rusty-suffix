@@ -1,3 +1,5 @@
+extern crate time;
+
 pub struct KissRng {
     x: usize,
     y: usize,
@@ -7,11 +9,12 @@ pub struct KissRng {
 
 impl KissRng {
     pub fn new() -> KissRng {
+        let now = time::precise_time_ns() as usize;
         return KissRng {
-            x: 123456789,
-            y: 987654321,
-            z: 43219876,
-            c: 6543217,
+            x: 123456789usize.wrapping_add(now),
+            y: 987654321usize.wrapping_add(now),
+            z: 43219876usize.wrapping_add(now),
+            c: 6543217usize.wrapping_add(now)
         };
     }
 
